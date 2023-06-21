@@ -1,0 +1,7 @@
+*/data
+*/train
+*/log*
+*/predictions/*/*
+!*/predictions/*/*.tsv
+
+*.pyc
