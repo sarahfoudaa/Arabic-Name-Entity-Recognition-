@@ -46,7 +46,7 @@ def matrix(test_sent, true_flat_ent, link_model_w, tokenizer_w,flag):
   '''
   nlp = infer.init(link_model_w, tokenizer_w)
   pred  = prediction(test_sent,nlp)
-  pred_flat_ent = utils.flatten(pred['pred_entites'])
+  pred_flat_no,pred_flat_ent = utils.flatten_num(pred['pred_entites'])
   
   class_report = classification_report(true_flat_ent, pred_flat_ent, target_names=['B-LOC','B-MISC','B-ORG','B-PERS','I-LOC','I-MISC','I-ORG','I-PERS','O'])
   print("\nClassification report for "+flag + " \n" +class_report )
@@ -62,7 +62,7 @@ def matrix(test_sent, true_flat_ent, link_model_w, tokenizer_w,flag):
 def main():
   test = dataset_proc.read_dataset('ANERcorp-CamelLabSplits/ANERCorp_CamelLab_test.txt')
   test_sent = utils.preprocess_test(test)
-  true_flat_ent =  utils.flatten(test_sent['list_entities'])
+  true_flat_no, true_flat_ent =  utils.flatten_num(test_sent['list_entities'])
   
   matrix(test_sent,true_flat_ent, sys.argv[1], sys.argv[2],sys.argv[3])
 
