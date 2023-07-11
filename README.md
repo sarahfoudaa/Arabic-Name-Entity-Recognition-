@@ -16,8 +16,8 @@
 
 # Results
 
-
-
-
-
+# Weigths
 To download the latest run model click the [link](https://drive.google.com/drive/folders/1Sq352cLfmxkDocm0AuZQ5YYzdHjcRQnL?usp=sharing)
+
+
+disclaimer the model weights and the results are of 6 epochs
