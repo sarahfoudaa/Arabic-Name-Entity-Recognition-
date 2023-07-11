@@ -8,7 +8,7 @@ Named entity recognition (NER) is a natural language processing (NLP) technique 
 * [Model](Model)
 * [Results](Results)
 * [Weights](Weights)
-* [Structure of the project](Structure of the project)
+* [Structure of the project](Structure-of-the-project)
 
 # Requirments
 * Dataset==1.6.0
@@ -96,8 +96,7 @@ To download the latest run model click the [link](https://drive.google.com/drive
 
 disclaimer: the model weights and the results are of 6 epochs
 
-
-# Structure of the project 
+# Structure
 
 ```
 RDI-NER
