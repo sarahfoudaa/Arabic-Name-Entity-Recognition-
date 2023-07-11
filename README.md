@@ -98,7 +98,7 @@ disclaimer: the model weights and the results are of 6 epochs
 
 #Files structure 
 
-Copy
+```
 NLL-IE
  ├─ re
  │   ├─ data
@@ -115,6 +115,8 @@ NLL-IE
      │   ├─ test.txt
      │   └─ conllpp_test.txt
      └─ ...
+
+```
 
 #deployment 
 #fastapi
