@@ -80,7 +80,7 @@ weighted avg       0.96      0.97      0.96     22459
 
 * Confussion matrix for Fine_tuned model 
 ```
-  	    B-LOC    B-MISC   B-ORG   B-PERS  I-LOC   I-MISC  I-ORG   I-PERS    O
+	    B-LOC    B-MISC   B-ORG   B-PERS  I-LOC   I-MISC  I-ORG   I-PERS    O
 B-LOC     632       1       7       3       0       0       3       1      18  
 B-MISC      6     148      12       4       0       2       0       3      60  
 B-ORG      22       5     333      19       4       0       3       0      64  
