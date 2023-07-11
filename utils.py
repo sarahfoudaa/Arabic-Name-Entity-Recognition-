@@ -86,6 +86,27 @@ def preprocess_train(test):
   sen_entities = pd.DataFrame().assign(sentence_id = df_sen['text'].index.astype(str) ,text=df_sen['text'], labels=entities_per_line['labels'])
   return sen_entities
 
+def flatten_num(data):
+  ''' 
+  Function that flatten the list of lists of the labels to be 1Dim 
+  
+  Pararmeters:
+    data(DataFrame of lists): lists of the labels of each sentence
+
+  Returns:
+    flat_no(list): flatten list of the entites after mapping to their IDs.
+    flat(list): flatten list of the entites.
+    
+  '''
+  irregular_list = data.tolist()
+  # Using lambda arguments: expression
+  flatten_list = lambda irregular_list:[element for item in irregular_list for element in flatten_list(item)] if type(irregular_list) is list else [irregular_list]
+  flat =  flatten_list(irregular_list)
+  flat_no = pd.DataFrame(flat,columns=['labels'])
+  flat_no['labels'] = flat_no['labels'].replace(['B-LOC','B-MISC','B-ORG','B-PERS','I-LOC','I-MISC','I-ORG','I-PERS','O'], [0,1,2,3,4,5,6,7,8])
+  flat_no = flat_no['labels'].tolist()
+  return flat_no,flat
+
 def flatten(data):
   ''' 
   Function that flatten the list of lists of the labels to be 1Dim 
