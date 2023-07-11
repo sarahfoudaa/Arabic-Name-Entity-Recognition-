@@ -8,6 +8,7 @@ Named entity recognition (NER) is a natural language processing (NLP) technique 
 * [Model](Model)
 * [Results](Results)
 * [Weights](Weights)
+* [Structure of the project](Structure of the project)
 
 # Requirments
 * Dataset==1.6.0
@@ -96,7 +97,7 @@ To download the latest run model click the [link](https://drive.google.com/drive
 disclaimer: the model weights and the results are of 6 epochs
 
 
-# structure of the project 
+# Structure of the project 
 
 ```
 RDI-NER
@@ -123,7 +124,7 @@ RDI-NER
  └─ ...
 ```
 
-#deployment 
+# Deployment 
   * Step 1: Building the API
   Fastapi
 app.py containing all the instructions on the server-side
