@@ -57,8 +57,8 @@ The train file dataset is then split by a percentage of 70:30 to have the train 
 CAMeLBERT-Mix NER Model is a Named Entity Recognition (NER) model that was built by fine-tuning the [CAMeLBERT Mix](https://huggingface.co/CAMeL-Lab/bert-base-arabic-camelbert-mix/) model. For the fine-tuning, we used the ANERcorp [dataset](https://camel.abudhabi.nyu.edu/anercorp/).
 
 # Results
-Classification report and confussion matrix of fine-tuned model after training on the new dataset \n
-Classification report for Fine_tuned model 
+Classification report and confussion matrix of fine-tuned model after training on the new dataset 
+* Classification report for Fine_tuned model 
 ```
               precision    recall  f1-score   support
 
@@ -78,7 +78,7 @@ weighted avg       0.96      0.97      0.96     22459
 
 ```
 
-Confussion matrix for Fine_tuned model 
+* Confussion matrix for Fine_tuned model 
 ```
 [[  632     1     7     3     0     0     3     1    18]
  [    6   148    12     4     0     2     0     3    60]
