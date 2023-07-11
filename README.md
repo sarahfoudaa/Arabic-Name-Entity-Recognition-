@@ -143,7 +143,7 @@ http://127.0.0.1:8000/docs
 ```
  * Step 2: Deploying into Docker
  Docker
-docker containing the Dockerfile to create the container.
+docker containing the Dockerfile to create the container.  
 Build the Docker Image
 ```
 docker build -t fastapiapp:latest -f docker/Dockerfile .
