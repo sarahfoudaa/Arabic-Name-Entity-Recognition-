@@ -160,6 +160,3 @@ for other routes
 http://127.0.0.1:8000/docs
 ```
 
-#refrences
-https://towardsdatascience.com/step-by-step-approach-to-build-your-machine-learning-api-using-fast-api-21bd32f2bbdb
-
