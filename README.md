@@ -99,30 +99,50 @@ disclaimer: the model weights and the results are of 6 epochs
 #Files structure 
 
 ```
-NLL-IE
- ├─ re
- │   ├─ data
- │   │   ├─ train.json        
- │   │   ├─ dev.json
- │   │   ├─ test.json
- │   │   ├─ dev_rev.json
- │   │   └─ test_rev.json
+RDI-NER
+ ├─ ANERcorp-CamelLabSplits
+ │   ├─ ANERCorp_Benajiba.txt
+ │   ├─ ANERCorp_CamelLab_test.txt    
+ │   ├─ ANERCorp_CamelLab_train.txt
+ │   ├─ README.txt
  │   └─ ...
- └─ ner
-     ├─ data
-     │   ├─ train.txt     
-     │   ├─ dev.txt
-     │   ├─ test.txt
-     │   └─ conllpp_test.txt
-     └─ ...
-
+ ├─ docker
+ │   ├─ Dockerfile
+ │   └─ ...
+ ├─ app.py
+ ├─ dataset_proc.py   
+ ├─ evaluate.py
+ ├─ model.py
+ ├─ infer.py
+ ├─ split.py
+ ├─ test.ipynb
+ ├─ tokenization_label.py
+ ├─ train.py
+ ├─ utils.py
+ ├─ README.txt
+ └─ ...
 ```
 
 #deployment 
-#fastapi
-
-#docker
-
+# Fastapi
+```
+uvicorn app:app --reload
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/docs
+```
+# Docker
+```
+docker build -t fastapiapp:latest -f docker/Dockerfile .
+```
+```
+docker run -p 80:80 fastapiapp:latest
+```
+```
+http://127.0.0.1:8000/
+```
+```
+http://127.0.0.1:8000/docs
+```
 
 #refrences
 https://towardsdatascience.com/step-by-step-approach-to-build-your-machine-learning-api-using-fast-api-21bd32f2bbdb
