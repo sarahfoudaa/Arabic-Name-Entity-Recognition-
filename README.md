@@ -4,6 +4,9 @@
 * [Requirments](#Requirments)
 * [Enviroment](#Enviroment)
 * [Dataset](#Dataset)
+* [Model](Model)
+* [Results](Results)
+* [Weights](Weights)
 
 # Requirments
 * Dataset==1.6.0
@@ -85,9 +88,8 @@ Confussion matrix for Fine_tuned model
  [   11    19    38    29     4    10    27     8 18947]]
 ```
 
-# Weigths
+# Weights
 
 To download the latest run model click the [link](https://drive.google.com/drive/folders/1Sq352cLfmxkDocm0AuZQ5YYzdHjcRQnL?usp=sharing)
 
-
-disclaimer the model weights and the results are of 6 epochs
+disclaimer: the model weights and the results are of 6 epochs
