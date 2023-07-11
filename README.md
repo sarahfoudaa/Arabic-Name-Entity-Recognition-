@@ -22,7 +22,7 @@
 # Results
 
 Classification report for Fine_tuned model 
-'''
+```
               precision    recall  f1-score   support
 
        B-LOC       0.90      0.95      0.92       665
@@ -39,7 +39,7 @@ Classification report for Fine_tuned model
    macro avg       0.84      0.77      0.79     22459
 weighted avg       0.96      0.97      0.96     22459
 
-'''
+```
 
               precision    recall  f1-score   support
 
@@ -59,6 +59,7 @@ weighted avg       0.96      0.97      0.96     22459
 
 
 Confussion matrix for Fine_tuned model 
+```
 [[  632     1     7     3     0     0     3     1    18]
  [    6   148    12     4     0     2     0     3    60]
  [   22     5   333    19     4     0     3     0    64]
@@ -68,6 +69,7 @@ Confussion matrix for Fine_tuned model
  [    3     0    16     3     2     1   190     9    51]
  [    3     2     0    41     1     5     5   561    20]
  [   11    19    38    29     4    10    27     8 18947]]
+```
 
 # Weigths
 To download the latest run model click the [link](https://drive.google.com/drive/folders/1Sq352cLfmxkDocm0AuZQ5YYzdHjcRQnL?usp=sharing)
