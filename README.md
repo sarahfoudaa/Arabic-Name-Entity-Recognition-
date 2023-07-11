@@ -129,7 +129,8 @@ RDI-NER
   Fastapi
 app.py containing all the instructions on the server-side
 the user/client sends a request to the uvicorn server which interacts with the API to trigger the prediction model.  
-run the API
+
+Run the API
 ```
 uvicorn app:app --reload
 ```
@@ -137,7 +138,7 @@ For default route
 ```
 http://127.0.0.1:8000/
 ```
-for other routes
+For other routes
 ```
 http://127.0.0.1:8000/docs
 ```
