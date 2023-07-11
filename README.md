@@ -1,4 +1,4 @@
-# RDI-NER project using BERT 
+# Named entity recognition project using BERT 
 Named entity recognition (NER) is a natural language processing (NLP) technique that involves identifying and extracting named entities from text. Named entities are objects or concepts in text that have specific names, such as people, organizations, locations, dates, times, and numerical values.
 
 ## Table of contents
