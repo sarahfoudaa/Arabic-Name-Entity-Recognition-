@@ -1,4 +1,5 @@
-# RDI-NER
+# RDI-NER project using BERT 
+Named entity recognition (NER) is a natural language processing (NLP) technique that involves identifying and extracting named entities from text. Named entities are objects or concepts in text that have specific names, such as people, organizations, locations, dates, times, and numerical values.
 
 ## Table of contents
 * [Requirments](#Requirments)
@@ -93,3 +94,29 @@ Confussion matrix for Fine_tuned model
 To download the latest run model click the [link](https://drive.google.com/drive/folders/1Sq352cLfmxkDocm0AuZQ5YYzdHjcRQnL?usp=sharing)
 
 disclaimer: the model weights and the results are of 6 epochs
+
+
+#Files structure 
+RDI-NER
+ |-- docker
+ |    |-- Dockerfile
+ |    |    |-- Dockerfile  
+ |-- docker
+ |    |-- Dockerfile
+ |    |    |-- Dockerfile      
+ |-- ner
+ |    |-- data
+ |    |    |-- train.txt     
+ |    |    |-- dev.txt
+ |    |    |-- test.txt
+ |    |    |-- conllpp_test.txt
+
+#deployment 
+#fastapi
+
+#docker
+
+
+#refrences
+https://towardsdatascience.com/step-by-step-approach-to-build-your-machine-learning-api-using-fast-api-21bd32f2bbdb
+
