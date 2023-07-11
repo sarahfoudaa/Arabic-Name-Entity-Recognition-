@@ -97,19 +97,21 @@ disclaimer: the model weights and the results are of 6 epochs
 
 
 #Files structure 
-RDI-NER
- |-- docker
- |    |-- Dockerfile
- |    |    |-- Dockerfile  
- |-- docker
- |    |-- Dockerfile
- |    |    |-- Dockerfile      
- |-- ner
- |    |-- data
- |    |    |-- train.txt     
- |    |    |-- dev.txt
- |    |    |-- test.txt
- |    |    |-- conllpp_test.txt
+
+NLL-IE
+|-- re
+| |-- data
+| | |-- train.json
+| | |-- dev.json
+| | |-- test.json
+| | |-- dev_rev.json
+| | |-- test_rev.json
+|-- ner
+| |-- data
+| | |-- train.txt
+| | |-- dev.txt
+| | |-- test.txt
+| | |-- conllpp_test.txt
 
 #deployment 
 #fastapi
