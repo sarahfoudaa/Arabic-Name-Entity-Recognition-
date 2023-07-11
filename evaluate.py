@@ -1,119 +1,71 @@
-import numpy as np
-import os
-from sklearn.metrics import precision_recall_fscore_support, accuracy_score
-import accelerate
-from transformers import TrainingArguments, Trainer
-from transformers import BertTokenizerFast, DataCollatorForTokenClassification, AutoModelForTokenClassification
+from transformers import AutoTokenizer,AutoModelForTokenClassification, pipeline
 
+import pandas as pd
 from datasets import Dataset, DatasetDict
-import datasets
 
-import json
+from sklearn.metrics import classification_report, confusion_matrix
 
-import utils,dataset_proc,tokenization_label
+import dataset_proc, infer, utils
 
-from model import BertClassifierModel
+import sys
 
+args = sys.argv
 
-def compute_metrics(eval_preds):
-    """
-    Function to compute the evaluation metrics for Named Entity Recognition (NER) tasks.
-    The function computes precision, recall, F1 score and accuracy.
+def prediction(test_sent,nlp):
+  ''' 
+  Function that predicts the labels of the sentences anf append them into a dataframe and removes the extra words and labels after tokenization
+  
+  Pararmeters:
+    test_sent(DataFrame): DataFrame that has 2 columns,sentence and labels.
+    nlp: A callable object of pipeline() that represents a Named Entity Recognition (NER) pipeline in the Hugging Face Transformers library.
 
-    Parameters:
-    eval_preds (tuple): A tuple containing the predicted logits and the true labels.
+  Returns:
+    pred(DataFrame): DataFrame of lists of labels of each sentence.
+  '''
+  pred = pd.DataFrame(columns=['pred_entites'])
+  l = []
+  for i in range(len(test_sent)): 
+    ner_results = nlp(test_sent['sentence'][i])
+    for j in range(len(ner_results)):
+      if '##' not in ner_results[j]['word']:
+        l.append(ner_results[j]['entity'])
+    pred.at[i,'pred_entites'] = l
+    l = []
+  return pred
 
-    Returns:
-    A dictionary containing the precision, recall, F1 score and accuracy.
-    """
-    pred_logits, labels = eval_preds
-    label_list =['B-LOC','B-MISC','B-ORG','B-PERS','I-LOC','I-MISC','I-ORG','I-PERS','O']
-    pred_logits = np.argmax(pred_logits, axis=2)
-    predictions = [
-        [label_list[eval_preds] for (eval_preds, l) in zip(prediction, label) if l != -100]
-        for prediction, label in zip(pred_logits, labels)
-    ]
+def matrix(test_sent, true_flat_ent, link_model_w, tokenizer_w,flag):
+  ''' 
+  Function that calculate and display the classification rreport and confussion matrix
 
-    true_labels = [
-      [label_list[l] for (eval_preds, l) in zip(prediction, label) if l != -100]
-       for prediction, label in zip(pred_logits, labels)
-   ]
+  Pararmeters:
+    test_sent(Dataset Dictionary): the test dataset 
+    true_flat_ent(list): true labels flattened in a 1D list
+    link_model_w(string): path to the model weigths 
+    tokenizer_w(string): path to the tokenizer weights
+    flag(string): decide if the paths sent was of the pretrained or of the baseline
+  '''
+  nlp = infer.init(link_model_w, tokenizer_w)
+  pred  = prediction(test_sent,nlp)
+  pred_flat_no,pred_flat_ent = utils.flatten_num(pred['pred_entites'])
+  
+  class_report = classification_report(true_flat_ent, pred_flat_ent, target_names=['B-LOC','B-MISC','B-ORG','B-PERS','I-LOC','I-MISC','I-ORG','I-PERS','O'])
+  print("\nClassification report for "+flag + " \n" +class_report )
+  #dataframe save csv   save stdout
+  #report_df = pd.DataFrame(class_report).transpose()
+  #report_df.to_csv('/content/drive/MyDrive/RDI/evaluations/report.csv', index=True)
 
-    precision, recall, f1_score, _ = precision_recall_fscore_support(utils.flatten(true_labels), utils.flatten(predictions), average='weighted')
-    accuracy = accuracy_score(utils.flatten(true_labels), utils.flatten(predictions))
-
-    return {
-      "precision": precision,
-      "recall": recall,
-      "f1": f1_score,
-      "accuracy": accuracy,
-  }
-
-def data(raw_data, tokenizer):
-
-  train = dataset_proc.read_dataset(raw_data)
-  pro_train = utils.preprocess_train(train)
-  my_dataset_dict = dataset_proc.dictionary(pro_train)
-  tokenized_datasets = my_dataset_dict.map(tokenization_label.tokenize_and_align_labels, batched=True, fn_kwargs={"tokenizer": tokenizer})
-  return tokenized_datasets
+  conf_m = confusion_matrix(true_flat_ent, pred_flat_ent)
+  print("\nConfussion matrix for  "+flag + " \n" + str(conf_m))
+  #conf_mat_df = pd.DataFrame(conf_m)
+  #conf_mat_df.to_csv('/content/drive/MyDrive/RDI/evaluations/conf_mat.csv', index=False)
 
 def main():
-  label_list =['B-LOC','B-MISC','B-ORG','B-PERS','I-LOC','I-MISC','I-ORG','I-PERS','O']
+  test = dataset_proc.read_dataset('ANERcorp-CamelLabSplits/ANERCorp_CamelLab_test.txt')
+  test_sent = utils.preprocess_test(test)
+  true_flat_no, true_flat_ent =  utils.flatten_num(test_sent['list_entities'])
   
-  tokenizer = BertTokenizerFast.from_pretrained("CAMeL-Lab/bert-base-arabic-camelbert-mix-ner")
-  model = BertClassifierModel(num_classes=9)
-  
-  tokenized_datasets = data('ANERcorp-CamelLabSplits/ANERCorp_CamelLab_train.txt', tokenizer)
-
-  egypt_time_str = utils.DT()
-  print(egypt_time_str)
-
-  args = TrainingArguments(
-    "weigths/"+egypt_time_str+"/check",
-    evaluation_strategy = "epoch",
-    learning_rate=2e-5,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=16,
-    num_train_epochs=6,
-    weight_decay=0.01,
-    label_names = ['labels'],
-    label_smoothing_factor = 0.001
-  )
-  
-  data_collator = DataCollatorForTokenClassification(tokenizer,max_length = 512)
-
-  trainer = Trainer(
-    model,
-    args,
-   train_dataset=tokenized_datasets["train"],
-   eval_dataset=tokenized_datasets["validation"],
-   data_collator=data_collator,
-   tokenizer=tokenizer,
-   compute_metrics=compute_metrics 
-  )
-  
-  trainer.train()
-
-  model.save_pretrained("weigths/"+egypt_time_str+"/ner_model")
-  tokenizer.save_pretrained("weigths/"+egypt_time_str+"/tokenizer")
-
-
-  id2label = {
-      str(i): label for i,label in enumerate(label_list)
-  }
-  label2id = {
-      label: str(i) for i,label in enumerate(label_list)
-  }
-
-  config = json.load(open("weigths/"+egypt_time_str+"/ner_model/config.json"))
-  config["id2label"] = id2label
-  config["label2id"] = label2id
-
-  json.dump(config, open("weigths/"+egypt_time_str+"/ner_model/config.json","w"))
-
-  model_fine_tuned = AutoModelForTokenClassification.from_pretrained("weigths/"+egypt_time_str+"/ner_model") 
-
-  print("model saved succefully to " + os.getcwd() + "/weigths/"+egypt_time_str)
+  matrix(test_sent,true_flat_ent, sys.argv[1], sys.argv[2],sys.argv[3])
 
 if __name__ == '__main__':
   main()
+
