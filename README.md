@@ -96,7 +96,7 @@ To download the latest run model click the [link](https://drive.google.com/drive
 
 disclaimer: the model weights and the results are of 6 epochs
 
-# Structure
+# Structure of the project
 
 ```
 RDI-NER
