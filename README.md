@@ -128,7 +128,8 @@ RDI-NER
   * Step 1: Building the API
   Fastapi
 app.py containing all the instructions on the server-side
-the user/client sends a request to the uvicorn server which interacts with the API to trigger the prediction model.
+the user/client sends a request to the uvicorn server which interacts with the API to trigger the prediction model.  
+run the API
 ```
 uvicorn app:app --reload
 ```
