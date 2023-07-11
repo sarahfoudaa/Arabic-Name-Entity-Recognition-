@@ -96,7 +96,7 @@ To download the latest run model click the [link](https://drive.google.com/drive
 disclaimer: the model weights and the results are of 6 epochs
 
 
-#Files structure 
+# structure of the project 
 
 ```
 RDI-NER
@@ -124,22 +124,37 @@ RDI-NER
 ```
 
 #deployment 
-# Fastapi
+  * Step 1: Building the API
+  Fastapi
+app.py containing all the instructions on the server-side
+the user/client sends a request to the uvicorn server which interacts with the API to trigger the prediction model.
 ```
 uvicorn app:app --reload
+```
+For default route 
+```
 http://127.0.0.1:8000/
+```
+for other routes
+```
 http://127.0.0.1:8000/docs
 ```
-# Docker
+ * Step 2: Deploying into Docker
+ Docker
+docker containing the Dockerfile to create the container.
+Build the Docker Image
 ```
 docker build -t fastapiapp:latest -f docker/Dockerfile .
 ```
+Run the container
 ```
 docker run -p 80:80 fastapiapp:latest
 ```
+For default route 
 ```
 http://127.0.0.1:8000/
 ```
+for other routes
 ```
 http://127.0.0.1:8000/docs
 ```
