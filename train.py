@@ -1,24 +1,18 @@
 import numpy as np
 import os
 from sklearn.metrics import precision_recall_fscore_support, accuracy_score
-
 import accelerate
 from transformers import TrainingArguments, Trainer
-
 from transformers import BertTokenizerFast, DataCollatorForTokenClassification, AutoModelForTokenClassification
 
 from datasets import Dataset, DatasetDict
 import datasets
-
-import accelerate
-from transformers import TrainingArguments, Trainer
 
 import json
 
 import utils,dataset_proc,tokenization_label
 
 from model import BertClassifierModel
-
 
 
 def compute_metrics(eval_preds):
@@ -80,7 +74,7 @@ def main():
     learning_rate=2e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=1,
+    num_train_epochs=6,
     weight_decay=0.01,
     label_names = ['labels'],
     label_smoothing_factor = 0.001
