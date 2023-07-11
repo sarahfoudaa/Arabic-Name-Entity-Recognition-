@@ -12,29 +12,46 @@
 * fastapi_standalone_docs==0.1.2
 
 # Enviroment
+This project was done using Python 3.10.12 and Transformers 4.30.2
 
 # Dataset
-Dataset used in this project is [ANERcorp - CAMeL Lab Train/Test Splits](https://camel.abudhabi.nyu.edu/anercorp/) 
+The dataset used in this project is [ANERcorp - CAMeL Lab Train/Test Splits](https://camel.abudhabi.nyu.edu/anercorp/) 
 The sentences containing the first 5/6 of the words go to train and the rest go to test. The train split has 125,102 words and the test split has 25,008 words.
 
-* B-LOC: Beginning of a location entity.
-* B-MISC: Beginning of a miscellaneous entity (i.e. entities that do not fit into any of the other categories).
-* B-ORG: Beginning of an organization entity.
-* B-PERS: Beginning of a person entity.
-* I-LOC: Inside of a location entity.
-* I-MISC: Inside of a miscellaneous entity.
-* I-ORG: Inside of an organization entity.
-* I-PERS: Inside of a person entity.
+* B-LOC/I-LOC:: Beginning/Inside of a location entity.
+* B-MISC/I-MISC: Beginning/Inside of a miscellaneous entity (i.e. entities that do not fit into any of the other categories).
+* B-ORG/I-ORG: Beginning/Inside of an organization entity.
+* B-PERS/I-PERS: Beginning/Inside of a person entity.
 * O: Not part of any named entity.
 
+Number of words
+*Train --> 110119
+*Test --> 22561
 
-# Usage
+Number of sentences 
+*Train --> 3972
+*Test --> 924
+
+Test dataset file
+min number of words in a sentence --> 2
+max number of words in a sentence --> 146
+average number of words in a sentence --> 25.98
+standard deviation number of words in a sentence --> 16.99
+
+Train dataset file
+min number of words in a sentence --> 2
+max number of words in a sentence --> 530
+average number of words in a sentence --> 30.10
+standard deviation number of words in a sentence --> 23.24
+
+The train file dataset is then split by a percentage of 70:30 to have the train and validation datasets
 
 # Model
 [CAMeL-Lab/bert-base-arabic-camelbert-mix-ner](https://huggingface.co/CAMeL-Lab/bert-base-arabic-camelbert-mix-ner)
+CAMeLBERT-Mix NER Model is a Named Entity Recognition (NER) model that was built by fine-tuning the [CAMeLBERT Mix](https://huggingface.co/CAMeL-Lab/bert-base-arabic-camelbert-mix/) model. For the fine-tuning, we used the ANERcorp [dataset](https://camel.abudhabi.nyu.edu/anercorp/).
 
 # Results
-
+Classification report and confussion matrix of fine-tuned model after training on the new dataset 
 Classification report for Fine_tuned model 
 ```
               precision    recall  f1-score   support
@@ -69,6 +86,7 @@ Confussion matrix for Fine_tuned model
 ```
 
 # Weigths
+
 To download the latest run model click the [link](https://drive.google.com/drive/folders/1Sq352cLfmxkDocm0AuZQ5YYzdHjcRQnL?usp=sharing)
 
 
