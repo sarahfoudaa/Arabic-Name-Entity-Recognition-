@@ -25,24 +25,24 @@ The sentences containing the first 5/6 of the words go to train and the rest go 
 * O: Not part of any named entity.
 
 Number of words
-*Train --> 110119
-*Test --> 22561
+* Train --> 110119
+* Test --> 22561
 
 Number of sentences 
-*Train --> 3972
-*Test --> 924
+* Train --> 3972
+* Test --> 924
 
 Test dataset file
-min number of words in a sentence --> 2
-max number of words in a sentence --> 146
-average number of words in a sentence --> 25.98
-standard deviation number of words in a sentence --> 16.99
+* Min number of words in a sentence --> 2
+* Max number of words in a sentence --> 146
+* Average number of words in a sentence --> 25.98
+* Standard deviation number of words in a sentence --> 16.99
 
 Train dataset file
-min number of words in a sentence --> 2
-max number of words in a sentence --> 530
-average number of words in a sentence --> 30.10
-standard deviation number of words in a sentence --> 23.24
+* Min number of words in a sentence --> 2
+* Max number of words in a sentence --> 530
+* Average number of words in a sentence --> 30.10
+* Standard deviation number of words in a sentence --> 23.24
 
 The train file dataset is then split by a percentage of 70:30 to have the train and validation datasets
 
