@@ -5,12 +5,12 @@ Named entity recognition (NER) is a natural language processing (NLP) technique 
 * [Requirments](#Requirments)
 * [Enviroment](#Enviroment)
 * [Dataset](#Dataset)
-* [Presrocessing](Presrocessing)
-* [Model](Model)
-* [Results](Results)
-* [Weights](Weights)
-* [Structure](Structure)
-* [Deployment](Deployment)
+* [Presrocessing](#Pre-processing)
+* [Model](#Model)
+* [Results](#Results)
+* [Weights](#Weights)
+* [Structure](#Structure)
+* [Deployment](#Deployment)
 
 # Requirments
 * Dataset==1.6.0
