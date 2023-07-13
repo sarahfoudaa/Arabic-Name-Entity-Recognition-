@@ -5,6 +5,7 @@ Named entity recognition (NER) is a natural language processing (NLP) technique 
 * [Requirments](#Requirments)
 * [Enviroment](#Enviroment)
 * [Dataset](#Dataset)
+* [Presrocessing](Presrocessing)
 * [Model](Model)
 * [Results](Results)
 * [Weights](Weights)
@@ -51,6 +52,21 @@ Train dataset file
 * Standard deviation number of words in a sentence --> 23.24
 
 The train file dataset is then split by a percentage of 70:30 to have the train and validation datasets
+
+# Presrocessing
+The dataset had two preprocessing steps 
+1. Cleaning
+2. Restructuring
+
+1. Cleaning
+* removing punctuation
+* removing rows with white spaces
+
+2. Restructuring
+After removing the punctuation there were two ways to structure the dataset to train and evaluate the model
+* Train/Validat dataset --> Using the white space as a separator between each sentence, put all the words of each sentence in a list corresponding to it a list of their labels all in a data frame
+* Test dataset --> Using the white space as a separator between each sentence, concatenate all the words of each sentence in a string corresponding to it a list of their labels all in a data frame
+
 
 # Model
 [CAMeL-Lab/bert-base-arabic-camelbert-mix-ner](https://huggingface.co/CAMeL-Lab/bert-base-arabic-camelbert-mix-ner)
