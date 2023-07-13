@@ -55,8 +55,6 @@ The train file dataset is then split by a percentage of 70:30 to have the train 
 
 # Pre-processing
 The dataset had two preprocessing steps 
-1. Cleaning
-2. Restructuring  
 
 1. Cleaning
 * removing punctuation
