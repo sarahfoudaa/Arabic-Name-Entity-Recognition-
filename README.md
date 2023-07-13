@@ -3,7 +3,6 @@ Named entity recognition (NER) is a natural language processing (NLP) technique 
 
 ## Table of contents
 * [Requirments](#Requirments)
-* [Enviroment](#Enviroment)
 * [Dataset](#Dataset)
 * [Presrocessing](#Pre-processing)
 * [Model](#Model)
@@ -17,9 +16,6 @@ Named entity recognition (NER) is a natural language processing (NLP) technique 
 * datasets==2.13.1
 * transformers[torch]==4.30.2
 * fastapi_standalone_docs==0.1.2
-
-# Enviroment
-This project was done using Python 3.10.12 and Transformers 4.30.2
 
 # Dataset
 The dataset used in this project is [ANERcorp - CAMeL Lab Train/Test Splits](https://camel.abudhabi.nyu.edu/anercorp/) 
