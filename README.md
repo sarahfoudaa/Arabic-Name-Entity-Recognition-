@@ -145,10 +145,6 @@ Run the API
 ```
 uvicorn app:app --reload
 ```
-For default route 
-```
-http://127.0.0.1:8000/
-```
 For other routes
 ```
 http://127.0.0.1:8000/docs
@@ -164,10 +160,6 @@ docker build -t fastapiapp:latest -f docker/Dockerfile .
 Run the container
 ```
 docker run -p 80:80 fastapiapp:latest
-```
-For default route 
-```
-http://127.0.0.1:8000/
 ```
 for other routes
 ```
